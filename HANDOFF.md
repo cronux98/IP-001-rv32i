@@ -484,6 +484,6 @@ make test-compliance      # T5.8: riscv-tests RV32I compliance suite
 
 *Architecture handoff complete. The IP-001 RV32I specification is approved for RTL implementation, conditional on resolving C-1 and C-2. Zero architecture bugs. Ready for RTL design stage.*
 
-**GitHub:** [to be populated after push]  
+**GitHub:** https://github.com/cronux98/IP-001-rv32i
 **Project path:** `~/vlsi-team/projects/IP-001-rv32i/`  
 **HANDOFF.md:** `~/vlsi-team/projects/IP-001-rv32i/HANDOFF.md`
