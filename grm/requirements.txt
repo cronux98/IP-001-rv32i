@@ -1,0 +1,4 @@
+# Python dependencies for IP-001 RV32I Golden Reference Model
+# Core (no external dependencies — uses stdlib only)
+# pytest is optional for the test suite
+pytest>=7.0.0

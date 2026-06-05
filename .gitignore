@@ -1,0 +1,32 @@
+# IP-001 RV32I — Build artifacts and temporary files
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# GRM build artifacts
+grm/binaries/*.elf
+grm/binaries/*.o
+/tmp/spike_grm_trace_*.log
+*.json
+
+# Verification build artifacts
+verification/__pycache__/
+verification/env/__pycache__/
+verification/tests/__pycache__/
+
+# Editor / OS
+*.swp
+*~
+.DS_Store
+.vscode/
+.idea/
+
+# RTL build (future)
+*.vvp
+*.vcd
+*.fst
+obj_dir/
