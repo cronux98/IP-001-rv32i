@@ -15,8 +15,6 @@ module id_stage (
     output reg  [ 4:0] rf_rs1_addr,
     output reg  [ 4:0] rf_rs2_addr,
     output reg  [ 4:0] rd_addr,
-    output reg  [31:0] rs1_data,
-    output reg  [31:0] rs2_data,
     output reg  [31:0] imm,
     output reg  [ 3:0] alu_op,
     output reg         alu_src_a,
@@ -91,11 +89,10 @@ module id_stage (
         rd_addr     = rd;
     end
 
-    // ── Source operand passthrough ──
-    always @(*) begin
-        rs1_data = rf_rs1_data;
-        rs2_data = rf_rs2_data;
-    end
+    // NOTE: rs1_data / rs2_data passthrough REMOVED — was a combinational
+    // loop because the top module wired id_stage.rs1_data back onto the same
+    // net as register_file.rs1_data. The register file directly drives the
+    // ID/EX pipeline register capture; no id_stage passthrough is needed.
 
     // ── Immediate selection ──
     always @(*) begin

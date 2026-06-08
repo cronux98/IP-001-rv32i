@@ -1,0 +1,1557 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2019  Clifford Wolf <clifford@clifford.at>           |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.9 (git sha1 1979e0b)
+
+
+-- Executing script file `flow/synth.ys' --
+
+1. Executing Verilog-2005 frontend: rtl/modules/register_file.v
+Parsing Verilog input from `rtl/modules/register_file.v' to AST representation.
+Generating RTLIL representation for module `\register_file'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: rtl/modules/forwarding_unit.v
+Parsing Verilog input from `rtl/modules/forwarding_unit.v' to AST representation.
+Generating RTLIL representation for module `\forwarding_unit'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: rtl/modules/hazard_unit.v
+Parsing Verilog input from `rtl/modules/hazard_unit.v' to AST representation.
+Generating RTLIL representation for module `\hazard_unit'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: rtl/modules/if_stage.v
+Parsing Verilog input from `rtl/modules/if_stage.v' to AST representation.
+Generating RTLIL representation for module `\if_stage'.
+Successfully finished Verilog frontend.
+
+5. Executing Verilog-2005 frontend: rtl/modules/id_stage.v
+Parsing Verilog input from `rtl/modules/id_stage.v' to AST representation.
+Generating RTLIL representation for module `\id_stage'.
+Successfully finished Verilog frontend.
+
+6. Executing Verilog-2005 frontend: rtl/modules/ex_stage.v
+Parsing Verilog input from `rtl/modules/ex_stage.v' to AST representation.
+Generating RTLIL representation for module `\ex_stage'.
+Successfully finished Verilog frontend.
+
+7. Executing Verilog-2005 frontend: rtl/modules/mem_stage.v
+Parsing Verilog input from `rtl/modules/mem_stage.v' to AST representation.
+Generating RTLIL representation for module `\mem_stage'.
+Successfully finished Verilog frontend.
+
+8. Executing Verilog-2005 frontend: rtl/modules/wb_stage.v
+Parsing Verilog input from `rtl/modules/wb_stage.v' to AST representation.
+Generating RTLIL representation for module `\wb_stage'.
+Successfully finished Verilog frontend.
+
+9. Executing Verilog-2005 frontend: rtl/modules/csr_block.v
+Parsing Verilog input from `rtl/modules/csr_block.v' to AST representation.
+Generating RTLIL representation for module `\csr_block'.
+Successfully finished Verilog frontend.
+
+10. Executing Verilog-2005 frontend: rtl/modules/pipeline_control.v
+Parsing Verilog input from `rtl/modules/pipeline_control.v' to AST representation.
+Generating RTLIL representation for module `\pipeline_control'.
+Successfully finished Verilog frontend.
+
+11. Executing Verilog-2005 frontend: rtl/top/rv32i_core.v
+Parsing Verilog input from `rtl/top/rv32i_core.v' to AST representation.
+Generating RTLIL representation for module `\rv32i_core'.
+Successfully finished Verilog frontend.
+
+12. Executing HIERARCHY pass (managing design hierarchy).
+
+12.1. Analyzing design hierarchy..
+Top module:  \rv32i_core
+Used module:     \csr_block
+Used module:     \pipeline_control
+Used module:     \hazard_unit
+Used module:     \forwarding_unit
+Used module:     \wb_stage
+Used module:     \mem_stage
+Used module:     \ex_stage
+Used module:     \id_stage
+Used module:     \register_file
+Used module:     \if_stage
+
+12.2. Analyzing design hierarchy..
+Top module:  \rv32i_core
+Used module:     \csr_block
+Used module:     \pipeline_control
+Used module:     \hazard_unit
+Used module:     \forwarding_unit
+Used module:     \wb_stage
+Used module:     \mem_stage
+Used module:     \ex_stage
+Used module:     \id_stage
+Used module:     \register_file
+Used module:     \if_stage
+Removed 0 unused modules.
+
+13. Executing PROC pass (convert processes to netlists).
+
+13.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+13.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 5 switch rules as full_case in process $proc$rtl/top/rv32i_core.v:441$226 in module rv32i_core.
+Marked 1 switch rules as full_case in process $proc$rtl/top/rv32i_core.v:30$223 in module rv32i_core.
+Marked 6 switch rules as full_case in process $proc$rtl/modules/pipeline_control.v:37$214 in module pipeline_control.
+Marked 2 switch rules as full_case in process $proc$rtl/modules/csr_block.v:179$212 in module csr_block.
+Marked 1 switch rules as full_case in process $proc$rtl/modules/csr_block.v:158$211 in module csr_block.
+Marked 2 switch rules as full_case in process $proc$rtl/modules/csr_block.v:141$209 in module csr_block.
+Marked 1 switch rules as full_case in process $proc$rtl/modules/csr_block.v:123$208 in module csr_block.
+Removed 1 dead cases from process $proc$rtl/modules/csr_block.v:112$204 in module csr_block.
+Marked 1 switch rules as full_case in process $proc$rtl/modules/csr_block.v:112$204 in module csr_block.
+Marked 1 switch rules as full_case in process $proc$rtl/modules/csr_block.v:98$203 in module csr_block.
+Marked 6 switch rules as full_case in process $proc$rtl/modules/csr_block.v:76$196 in module csr_block.
+Removed 2 dead cases from process $proc$rtl/modules/mem_stage.v:101$165 in module mem_stage.
+Marked 3 switch rules as full_case in process $proc$rtl/modules/mem_stage.v:101$165 in module mem_stage.
+Marked 2 switch rules as full_case in process $proc$rtl/modules/mem_stage.v:88$160 in module mem_stage.
+Removed 2 dead cases from process $proc$rtl/modules/mem_stage.v:61$158 in module mem_stage.
+Marked 3 switch rules as full_case in process $proc$rtl/modules/mem_stage.v:61$158 in module mem_stage.
+Marked 1 switch rules as full_case in process $proc$rtl/modules/mem_stage.v:51$157 in module mem_stage.
+Marked 2 switch rules as full_case in process $proc$rtl/modules/ex_stage.v:112$141 in module ex_stage.
+Marked 1 switch rules as full_case in process $proc$rtl/modules/ex_stage.v:83$127 in module ex_stage.
+Marked 2 switch rules as full_case in process $proc$rtl/modules/id_stage.v:220$102 in module id_stage.
+Marked 3 switch rules as full_case in process $proc$rtl/modules/id_stage.v:184$88 in module id_stage.
+Marked 1 switch rules as full_case in process $proc$rtl/modules/id_stage.v:168$84 in module id_stage.
+Marked 3 switch rules as full_case in process $proc$rtl/modules/id_stage.v:148$76 in module id_stage.
+Marked 4 switch rules as full_case in process $proc$rtl/modules/id_stage.v:127$74 in module id_stage.
+Marked 1 switch rules as full_case in process $proc$rtl/modules/id_stage.v:101$69 in module id_stage.
+Marked 1 switch rules as full_case in process $proc$rtl/modules/if_stage.v:38$51 in module if_stage.
+Removed a total of 5 dead cases.
+
+13.3. Executing PROC_INIT pass (extract init attributes).
+
+13.4. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_sync_n in `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+Found async reset \rst_n in `\rv32i_core.$proc$rtl/top/rv32i_core.v:30$223'.
+Found async reset \rst_sync_n in `\csr_block.$proc$rtl/modules/csr_block.v:179$212'.
+Found async reset \rst_sync_n in `\if_stage.$proc$rtl/modules/if_stage.v:38$51'.
+
+13.5. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+     1/58: $0\mem_wb_csr_rdata[31:0]
+     2/58: $0\mem_wb_is_csr[0:0]
+     3/58: $0\mem_wb_wb_src[1:0]
+     4/58: $0\mem_wb_mem_rdata[31:0]
+     5/58: $0\mem_wb_alu_result[31:0]
+     6/58: $0\mem_wb_pc[31:0]
+     7/58: $0\ex_mem_is_jalr[0:0]
+     8/58: $0\ex_mem_is_jal[0:0]
+     9/58: $0\ex_mem_is_mret[0:0]
+    10/58: $0\ex_mem_is_illegal[0:0]
+    11/58: $0\ex_mem_is_ebreak[0:0]
+    12/58: $0\ex_mem_is_ecall[0:0]
+    13/58: $0\ex_mem_csr_addr[11:0]
+    14/58: $0\ex_mem_csr_op[1:0]
+    15/58: $0\ex_mem_is_csr[0:0]
+    16/58: $0\ex_mem_wb_src[1:0]
+    17/58: $0\ex_mem_mem_sign_ext[0:0]
+    18/58: $0\ex_mem_mem_width[1:0]
+    19/58: $0\ex_mem_mem_write[0:0]
+    20/58: $0\ex_mem_mem_read[0:0]
+    21/58: $0\ex_mem_rs2_data[31:0]
+    22/58: $0\ex_mem_pc[31:0]
+    23/58: $0\id_ex_csr_addr[11:0]
+    24/58: $0\id_ex_csr_op[1:0]
+    25/58: $0\id_ex_is_mret[0:0]
+    26/58: $0\id_ex_is_illegal[0:0]
+    27/58: $0\id_ex_is_ebreak[0:0]
+    28/58: $0\id_ex_is_ecall[0:0]
+    29/58: $0\id_ex_is_csr[0:0]
+    30/58: $0\id_ex_is_jalr[0:0]
+    31/58: $0\id_ex_is_jal[0:0]
+    32/58: $0\id_ex_is_branch[0:0]
+    33/58: $0\id_ex_branch_op[2:0]
+    34/58: $0\id_ex_wb_src[1:0]
+    35/58: $0\id_ex_wb_en[0:0]
+    36/58: $0\id_ex_mem_sign_ext[0:0]
+    37/58: $0\id_ex_mem_width[1:0]
+    38/58: $0\id_ex_mem_write[0:0]
+    39/58: $0\id_ex_alu_src_b[0:0]
+    40/58: $0\id_ex_alu_src_a[0:0]
+    41/58: $0\id_ex_alu_op[3:0]
+    42/58: $0\id_ex_imm[31:0]
+    43/58: $0\id_ex_rs2_data[31:0]
+    44/58: $0\if_id_pc[31:0]
+    45/58: $0\id_ex_pc[31:0]
+    46/58: $0\if_id_valid[0:0]
+    47/58: $0\if_id_instr[31:0]
+    48/58: $0\if_id_pc_plus4[31:0]
+    49/58: $0\id_ex_rs1_data[31:0]
+    50/58: $0\id_ex_rd_addr[4:0]
+    51/58: $0\id_ex_mem_read[0:0]
+    52/58: $0\ex_mem_rd_addr[4:0]
+    53/58: $0\mem_wb_rd_addr[4:0]
+    54/58: $0\mem_wb_wb_en[0:0]
+    55/58: $0\ex_mem_alu_result[31:0]
+    56/58: $0\ex_mem_wb_en[0:0]
+    57/58: $0\id_ex_rs2_addr[4:0]
+    58/58: $0\id_ex_rs1_addr[4:0]
+Creating decoders for process `\rv32i_core.$proc$rtl/top/rv32i_core.v:30$223'.
+     1/1: $0\rst_sync_ff[1:0]
+Creating decoders for process `\pipeline_control.$proc$rtl/modules/pipeline_control.v:114$217'.
+     1/3: $0\id_ex_reg_en[0:0]
+     2/3: $0\if_id_reg_en[0:0]
+     3/3: $0\pc_write_en[0:0]
+Creating decoders for process `\pipeline_control.$proc$rtl/modules/pipeline_control.v:37$214'.
+     1/49: $6\nop_into_ex[0:0]
+     2/49: $6\stall_id[0:0]
+     3/49: $6\stall_if[0:0]
+     4/49: $6\flush_mem[0:0]
+     5/49: $6\flush_ex[0:0]
+     6/49: $6\flush_id[0:0]
+     7/49: $6\flush_if[0:0]
+     8/49: $5\nop_into_ex[0:0]
+     9/49: $5\stall_id[0:0]
+    10/49: $5\stall_if[0:0]
+    11/49: $5\flush_mem[0:0]
+    12/49: $5\flush_ex[0:0]
+    13/49: $5\flush_id[0:0]
+    14/49: $5\flush_if[0:0]
+    15/49: $4\nop_into_ex[0:0]
+    16/49: $4\stall_id[0:0]
+    17/49: $4\stall_if[0:0]
+    18/49: $4\flush_mem[0:0]
+    19/49: $4\flush_ex[0:0]
+    20/49: $4\flush_id[0:0]
+    21/49: $4\flush_if[0:0]
+    22/49: $3\nop_into_ex[0:0]
+    23/49: $3\stall_id[0:0]
+    24/49: $3\stall_if[0:0]
+    25/49: $3\flush_mem[0:0]
+    26/49: $3\flush_ex[0:0]
+    27/49: $3\flush_id[0:0]
+    28/49: $3\flush_if[0:0]
+    29/49: $2\nop_into_ex[0:0]
+    30/49: $2\stall_id[0:0]
+    31/49: $2\stall_if[0:0]
+    32/49: $2\flush_mem[0:0]
+    33/49: $2\flush_ex[0:0]
+    34/49: $2\flush_id[0:0]
+    35/49: $2\flush_if[0:0]
+    36/49: $1\nop_into_ex[0:0]
+    37/49: $1\stall_id[0:0]
+    38/49: $1\stall_if[0:0]
+    39/49: $1\flush_mem[0:0]
+    40/49: $1\flush_ex[0:0]
+    41/49: $1\flush_id[0:0]
+    42/49: $1\flush_if[0:0]
+    43/49: $0\flush_id[0:0]
+    44/49: $0\nop_into_ex[0:0]
+    45/49: $0\flush_mem[0:0]
+    46/49: $0\flush_ex[0:0]
+    47/49: $0\flush_if[0:0]
+    48/49: $0\stall_id[0:0]
+    49/49: $0\stall_if[0:0]
+Creating decoders for process `\csr_block.$proc$rtl/modules/csr_block.v:179$212'.
+     1/15: $0\mstatus[31:0] [31:8]
+     2/15: $0\mstatus[31:0] [2:0]
+     3/15: $0\mstatus[31:0] [3]
+     4/15: $0\mstatus[31:0] [6:4]
+     5/15: $0\mstatus[31:0] [7]
+     6/15: $0\mip[31:0] [11]
+     7/15: $0\mip[31:0] [10:8]
+     8/15: $0\mip[31:0] [7]
+     9/15: $0\mip[31:0] [6:0]
+    10/15: $0\mie[31:0]
+    11/15: $0\mepc[31:0]
+    12/15: $0\mtvec[31:0]
+    13/15: $0\misa[31:0]
+    14/15: $0\mip[31:0] [31:12]
+    15/15: $0\mcause[31:0]
+Creating decoders for process `\csr_block.$proc$rtl/modules/csr_block.v:158$211'.
+     1/10: $1\flush_pipeline[0:0]
+     2/10: $1\mret_target[31:0]
+     3/10: $1\mret_taken[0:0]
+     4/10: $1\trap_target[31:0]
+     5/10: $1\trap_taken[0:0]
+     6/10: $0\flush_pipeline[0:0]
+     7/10: $0\mret_target[31:0]
+     8/10: $0\mret_taken[0:0]
+     9/10: $0\trap_target[31:0]
+    10/10: $0\trap_taken[0:0]
+Creating decoders for process `\csr_block.$proc$rtl/modules/csr_block.v:141$209'.
+     1/6: $2\wb_en_out[0:0]
+     2/6: $2\csr_rdata[31:0]
+     3/6: $1\wb_en_out[0:0]
+     4/6: $1\csr_rdata[31:0]
+     5/6: $0\csr_rdata[31:0]
+     6/6: $0\wb_en_out[0:0]
+Creating decoders for process `\csr_block.$proc$rtl/modules/csr_block.v:123$208'.
+     1/3: $1\csr_next[31:0] [31:8]
+     2/3: $1\csr_next[31:0] [7:0]
+     3/3: $0\csr_next[31:0]
+Creating decoders for process `\csr_block.$proc$rtl/modules/csr_block.v:112$204'.
+     1/2: $1\csr_wdata[31:0]
+     2/2: $0\csr_wdata[31:0]
+Creating decoders for process `\csr_block.$proc$rtl/modules/csr_block.v:98$203'.
+     1/2: $1\csr_current[31:0]
+     2/2: $0\csr_current[31:0]
+Creating decoders for process `\csr_block.$proc$rtl/modules/csr_block.v:93$201'.
+     1/1: $0\trap_entry[0:0]
+Creating decoders for process `\csr_block.$proc$rtl/modules/csr_block.v:76$196'.
+     1/7: $6\trap_cause_val[31:0]
+     2/7: $5\trap_cause_val[31:0]
+     3/7: $4\trap_cause_val[31:0]
+     4/7: $3\trap_cause_val[31:0]
+     5/7: $2\trap_cause_val[31:0]
+     6/7: $1\trap_cause_val[31:0]
+     7/7: $0\trap_cause_val[31:0]
+Creating decoders for process `\wb_stage.$proc$rtl/modules/wb_stage.v:37$182'.
+     1/3: $0\rf_we[0:0]
+     2/3: $0\rf_rd_data[31:0]
+     3/3: $0\rf_rd_addr[4:0]
+Creating decoders for process `\mem_stage.$proc$rtl/modules/mem_stage.v:123$172'.
+     1/7: $0\csr_rdata_out[31:0]
+     2/7: $0\is_csr_out[0:0]
+     3/7: $0\pc_out[31:0]
+     4/7: $0\wb_src_out[1:0]
+     5/7: $0\wb_en_out[0:0]
+     6/7: $0\rd_addr_out[4:0]
+     7/7: $0\alu_result_out[31:0]
+Creating decoders for process `\mem_stage.$proc$rtl/modules/mem_stage.v:101$165'.
+     1/4: $3\mem_rdata[31:0]
+     2/4: $2\mem_rdata[31:0]
+     3/4: $1\mem_rdata[31:0]
+     4/4: $0\mem_rdata[31:0]
+Creating decoders for process `\mem_stage.$proc$rtl/modules/mem_stage.v:88$160'.
+     1/3: $2\misaligned_trap[0:0]
+     2/3: $1\misaligned_trap[0:0]
+     3/3: $0\misaligned_trap[0:0]
+Creating decoders for process `\mem_stage.$proc$rtl/modules/mem_stage.v:83$159'.
+     1/1: $0\d_we[0:0]
+Creating decoders for process `\mem_stage.$proc$rtl/modules/mem_stage.v:61$158'.
+     1/4: $3\d_be[3:0]
+     2/4: $2\d_be[3:0]
+     3/4: $1\d_be[3:0]
+     4/4: $0\d_be[3:0]
+Creating decoders for process `\mem_stage.$proc$rtl/modules/mem_stage.v:51$157'.
+     1/2: $1\d_wdata[31:0]
+     2/2: $0\d_wdata[31:0]
+Creating decoders for process `\mem_stage.$proc$rtl/modules/mem_stage.v:46$156'.
+     1/1: $0\d_addr[31:0]
+Creating decoders for process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+     1/17: $0\is_jalr_out[0:0]
+     2/17: $0\is_jal_out[0:0]
+     3/17: $0\pc_out[31:0]
+     4/17: $0\csr_addr_out[11:0]
+     5/17: $0\csr_op_out[1:0]
+     6/17: $0\is_csr_out[0:0]
+     7/17: $0\is_mret_out[0:0]
+     8/17: $0\is_illegal_out[0:0]
+     9/17: $0\is_ebreak_out[0:0]
+    10/17: $0\is_ecall_out[0:0]
+    11/17: $0\wb_src_out[1:0]
+    12/17: $0\wb_en_out[0:0]
+    13/17: $0\mem_sign_ext_out[0:0]
+    14/17: $0\mem_width_out[1:0]
+    15/17: $0\mem_write_out[0:0]
+    16/17: $0\mem_read_out[0:0]
+    17/17: $0\rd_addr_out[4:0]
+Creating decoders for process `\ex_stage.$proc$rtl/modules/ex_stage.v:135$150'.
+     1/1: $0\rs2_data_out[31:0]
+Creating decoders for process `\ex_stage.$proc$rtl/modules/ex_stage.v:130$148'.
+     1/1: $0\branch_target[31:0]
+Creating decoders for process `\ex_stage.$proc$rtl/modules/ex_stage.v:112$141'.
+     1/3: $2\branch_taken[0:0]
+     2/3: $1\branch_taken[0:0]
+     3/3: $0\branch_taken[0:0]
+Creating decoders for process `\ex_stage.$proc$rtl/modules/ex_stage.v:83$127'.
+     1/2: $1\alu_result[31:0]
+     2/2: $0\alu_result[31:0]
+Creating decoders for process `\id_stage.$proc$rtl/modules/id_stage.v:246$116'.
+     1/1: $0\funct3[2:0]
+Creating decoders for process `\id_stage.$proc$rtl/modules/id_stage.v:239$105'.
+     1/1: $0\is_illegal[0:0]
+Creating decoders for process `\id_stage.$proc$rtl/modules/id_stage.v:220$102'.
+     1/9: $2\is_mret[0:0]
+     2/9: $2\is_ebreak[0:0]
+     3/9: $2\is_ecall[0:0]
+     4/9: $1\is_mret[0:0]
+     5/9: $1\is_ebreak[0:0]
+     6/9: $1\is_ecall[0:0]
+     7/9: $0\is_mret[0:0]
+     8/9: $0\is_ebreak[0:0]
+     9/9: $0\is_ecall[0:0]
+Creating decoders for process `\id_stage.$proc$rtl/modules/id_stage.v:213$99'.
+     1/3: $0\csr_addr[11:0]
+     2/3: $0\csr_op[1:0]
+     3/3: $0\is_csr[0:0]
+Creating decoders for process `\id_stage.$proc$rtl/modules/id_stage.v:207$98'.
+     1/2: $0\is_jalr[0:0]
+     2/2: $0\is_jal[0:0]
+Creating decoders for process `\id_stage.$proc$rtl/modules/id_stage.v:201$97'.
+     1/2: $0\branch_op[2:0]
+     2/2: $0\is_branch[0:0]
+Creating decoders for process `\id_stage.$proc$rtl/modules/id_stage.v:184$88'.
+     1/5: $3\wb_src[1:0]
+     2/5: $2\wb_src[1:0]
+     3/5: $1\wb_src[1:0]
+     4/5: $0\wb_src[1:0]
+     5/5: $0\wb_en[0:0]
+Creating decoders for process `\id_stage.$proc$rtl/modules/id_stage.v:168$84'.
+     1/5: $1\mem_width[1:0]
+     2/5: $0\mem_sign_ext[0:0]
+     3/5: $0\mem_width[1:0]
+     4/5: $0\mem_write[0:0]
+     5/5: $0\mem_read[0:0]
+Creating decoders for process `\id_stage.$proc$rtl/modules/id_stage.v:148$76'.
+     1/5: $1\alu_src_b[0:0]
+     2/5: $2\alu_src_a[0:0]
+     3/5: $1\alu_src_a[0:0]
+     4/5: $0\alu_src_b[0:0]
+     5/5: $0\alu_src_a[0:0]
+Creating decoders for process `\id_stage.$proc$rtl/modules/id_stage.v:127$74'.
+     1/5: $4\alu_op[3:0]
+     2/5: $3\alu_op[3:0]
+     3/5: $2\alu_op[3:0]
+     4/5: $1\alu_op[3:0]
+     5/5: $0\alu_op[3:0]
+Creating decoders for process `\id_stage.$proc$rtl/modules/id_stage.v:116$70'.
+     1/2: $0\jalr_target[31:0]
+     2/2: $0\jal_target[31:0]
+Creating decoders for process `\id_stage.$proc$rtl/modules/id_stage.v:101$69'.
+     1/2: $1\imm[31:0]
+     2/2: $0\imm[31:0]
+Creating decoders for process `\id_stage.$proc$rtl/modules/id_stage.v:95$68'.
+     1/2: $0\rs2_data[31:0]
+     2/2: $0\rs1_data[31:0]
+Creating decoders for process `\id_stage.$proc$rtl/modules/id_stage.v:88$67'.
+     1/3: $0\rd_addr[4:0]
+     2/3: $0\rf_rs2_addr[4:0]
+     3/3: $0\rf_rs1_addr[4:0]
+Creating decoders for process `\if_stage.$proc$rtl/modules/if_stage.v:53$55'.
+     1/1: $0\i_addr[31:0]
+Creating decoders for process `\if_stage.$proc$rtl/modules/if_stage.v:48$53'.
+     1/1: $0\pc_plus4[31:0]
+Creating decoders for process `\if_stage.$proc$rtl/modules/if_stage.v:38$51'.
+     1/1: $0\pc[31:0]
+Creating decoders for process `\forwarding_unit.$proc$rtl/modules/forwarding_unit.v:51$35'.
+     1/2: $0\fwd_b_sel[1:0]
+     2/2: $0\fwd_a_sel[1:0]
+Creating decoders for process `\register_file.$proc$rtl/modules/register_file.v:24$2'.
+     1/3: $0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5
+     2/3: $0$memwr$\rf$rtl/modules/register_file.v:26$1_DATA[31:0]$4
+     3/3: $0$memwr$\rf$rtl/modules/register_file.v:26$1_ADDR[4:0]$3
+
+13.6. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\pipeline_control.\pc_write_en' from process `\pipeline_control.$proc$rtl/modules/pipeline_control.v:114$217'.
+No latch inferred for signal `\pipeline_control.\if_id_reg_en' from process `\pipeline_control.$proc$rtl/modules/pipeline_control.v:114$217'.
+No latch inferred for signal `\pipeline_control.\id_ex_reg_en' from process `\pipeline_control.$proc$rtl/modules/pipeline_control.v:114$217'.
+No latch inferred for signal `\pipeline_control.\stall_if' from process `\pipeline_control.$proc$rtl/modules/pipeline_control.v:37$214'.
+No latch inferred for signal `\pipeline_control.\stall_id' from process `\pipeline_control.$proc$rtl/modules/pipeline_control.v:37$214'.
+No latch inferred for signal `\pipeline_control.\flush_if' from process `\pipeline_control.$proc$rtl/modules/pipeline_control.v:37$214'.
+No latch inferred for signal `\pipeline_control.\flush_ex' from process `\pipeline_control.$proc$rtl/modules/pipeline_control.v:37$214'.
+No latch inferred for signal `\pipeline_control.\flush_mem' from process `\pipeline_control.$proc$rtl/modules/pipeline_control.v:37$214'.
+No latch inferred for signal `\pipeline_control.\nop_into_ex' from process `\pipeline_control.$proc$rtl/modules/pipeline_control.v:37$214'.
+No latch inferred for signal `\pipeline_control.\flush_id' from process `\pipeline_control.$proc$rtl/modules/pipeline_control.v:37$214'.
+No latch inferred for signal `\csr_block.\trap_taken' from process `\csr_block.$proc$rtl/modules/csr_block.v:158$211'.
+No latch inferred for signal `\csr_block.\trap_target' from process `\csr_block.$proc$rtl/modules/csr_block.v:158$211'.
+No latch inferred for signal `\csr_block.\mret_taken' from process `\csr_block.$proc$rtl/modules/csr_block.v:158$211'.
+No latch inferred for signal `\csr_block.\mret_target' from process `\csr_block.$proc$rtl/modules/csr_block.v:158$211'.
+No latch inferred for signal `\csr_block.\flush_pipeline' from process `\csr_block.$proc$rtl/modules/csr_block.v:158$211'.
+No latch inferred for signal `\csr_block.\wb_en_out' from process `\csr_block.$proc$rtl/modules/csr_block.v:141$209'.
+No latch inferred for signal `\csr_block.\csr_rdata' from process `\csr_block.$proc$rtl/modules/csr_block.v:141$209'.
+No latch inferred for signal `\csr_block.\csr_next' from process `\csr_block.$proc$rtl/modules/csr_block.v:123$208'.
+No latch inferred for signal `\csr_block.\csr_wdata' from process `\csr_block.$proc$rtl/modules/csr_block.v:112$204'.
+No latch inferred for signal `\csr_block.\csr_current' from process `\csr_block.$proc$rtl/modules/csr_block.v:98$203'.
+No latch inferred for signal `\csr_block.\trap_entry' from process `\csr_block.$proc$rtl/modules/csr_block.v:93$201'.
+No latch inferred for signal `\csr_block.\trap_cause_val' from process `\csr_block.$proc$rtl/modules/csr_block.v:76$196'.
+No latch inferred for signal `\wb_stage.\rf_rd_addr' from process `\wb_stage.$proc$rtl/modules/wb_stage.v:37$182'.
+No latch inferred for signal `\wb_stage.\rf_rd_data' from process `\wb_stage.$proc$rtl/modules/wb_stage.v:37$182'.
+No latch inferred for signal `\wb_stage.\rf_we' from process `\wb_stage.$proc$rtl/modules/wb_stage.v:37$182'.
+No latch inferred for signal `\mem_stage.\rd_addr_out' from process `\mem_stage.$proc$rtl/modules/mem_stage.v:123$172'.
+No latch inferred for signal `\mem_stage.\wb_en_out' from process `\mem_stage.$proc$rtl/modules/mem_stage.v:123$172'.
+No latch inferred for signal `\mem_stage.\wb_src_out' from process `\mem_stage.$proc$rtl/modules/mem_stage.v:123$172'.
+No latch inferred for signal `\mem_stage.\is_csr_out' from process `\mem_stage.$proc$rtl/modules/mem_stage.v:123$172'.
+No latch inferred for signal `\mem_stage.\pc_out' from process `\mem_stage.$proc$rtl/modules/mem_stage.v:123$172'.
+No latch inferred for signal `\mem_stage.\alu_result_out' from process `\mem_stage.$proc$rtl/modules/mem_stage.v:123$172'.
+No latch inferred for signal `\mem_stage.\csr_rdata_out' from process `\mem_stage.$proc$rtl/modules/mem_stage.v:123$172'.
+No latch inferred for signal `\mem_stage.\mem_rdata' from process `\mem_stage.$proc$rtl/modules/mem_stage.v:101$165'.
+No latch inferred for signal `\mem_stage.\misaligned_trap' from process `\mem_stage.$proc$rtl/modules/mem_stage.v:88$160'.
+No latch inferred for signal `\mem_stage.\d_we' from process `\mem_stage.$proc$rtl/modules/mem_stage.v:83$159'.
+No latch inferred for signal `\mem_stage.\d_be' from process `\mem_stage.$proc$rtl/modules/mem_stage.v:61$158'.
+No latch inferred for signal `\mem_stage.\d_wdata' from process `\mem_stage.$proc$rtl/modules/mem_stage.v:51$157'.
+No latch inferred for signal `\mem_stage.\d_addr' from process `\mem_stage.$proc$rtl/modules/mem_stage.v:46$156'.
+No latch inferred for signal `\ex_stage.\mem_write_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\rd_addr_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\mem_read_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\mem_width_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\mem_sign_ext_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\wb_en_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\wb_src_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\is_ecall_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\is_ebreak_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\is_illegal_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\is_mret_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\is_csr_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\csr_op_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\csr_addr_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\pc_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\is_jal_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\is_jalr_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+No latch inferred for signal `\ex_stage.\rs2_data_out' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:135$150'.
+No latch inferred for signal `\ex_stage.\branch_target' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:130$148'.
+No latch inferred for signal `\ex_stage.\branch_taken' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:112$141'.
+No latch inferred for signal `\ex_stage.\alu_result' from process `\ex_stage.$proc$rtl/modules/ex_stage.v:83$127'.
+No latch inferred for signal `\id_stage.\funct3' from process `\id_stage.$proc$rtl/modules/id_stage.v:246$116'.
+No latch inferred for signal `\id_stage.\is_illegal' from process `\id_stage.$proc$rtl/modules/id_stage.v:239$105'.
+No latch inferred for signal `\id_stage.\is_ecall' from process `\id_stage.$proc$rtl/modules/id_stage.v:220$102'.
+No latch inferred for signal `\id_stage.\is_ebreak' from process `\id_stage.$proc$rtl/modules/id_stage.v:220$102'.
+No latch inferred for signal `\id_stage.\is_mret' from process `\id_stage.$proc$rtl/modules/id_stage.v:220$102'.
+No latch inferred for signal `\id_stage.\is_csr' from process `\id_stage.$proc$rtl/modules/id_stage.v:213$99'.
+No latch inferred for signal `\id_stage.\csr_op' from process `\id_stage.$proc$rtl/modules/id_stage.v:213$99'.
+No latch inferred for signal `\id_stage.\csr_addr' from process `\id_stage.$proc$rtl/modules/id_stage.v:213$99'.
+No latch inferred for signal `\id_stage.\is_jal' from process `\id_stage.$proc$rtl/modules/id_stage.v:207$98'.
+No latch inferred for signal `\id_stage.\is_jalr' from process `\id_stage.$proc$rtl/modules/id_stage.v:207$98'.
+No latch inferred for signal `\id_stage.\branch_op' from process `\id_stage.$proc$rtl/modules/id_stage.v:201$97'.
+No latch inferred for signal `\id_stage.\is_branch' from process `\id_stage.$proc$rtl/modules/id_stage.v:201$97'.
+No latch inferred for signal `\id_stage.\wb_en' from process `\id_stage.$proc$rtl/modules/id_stage.v:184$88'.
+No latch inferred for signal `\id_stage.\wb_src' from process `\id_stage.$proc$rtl/modules/id_stage.v:184$88'.
+No latch inferred for signal `\id_stage.\mem_read' from process `\id_stage.$proc$rtl/modules/id_stage.v:168$84'.
+No latch inferred for signal `\id_stage.\mem_write' from process `\id_stage.$proc$rtl/modules/id_stage.v:168$84'.
+No latch inferred for signal `\id_stage.\mem_width' from process `\id_stage.$proc$rtl/modules/id_stage.v:168$84'.
+No latch inferred for signal `\id_stage.\mem_sign_ext' from process `\id_stage.$proc$rtl/modules/id_stage.v:168$84'.
+No latch inferred for signal `\id_stage.\alu_src_b' from process `\id_stage.$proc$rtl/modules/id_stage.v:148$76'.
+No latch inferred for signal `\id_stage.\alu_src_a' from process `\id_stage.$proc$rtl/modules/id_stage.v:148$76'.
+No latch inferred for signal `\id_stage.\alu_op' from process `\id_stage.$proc$rtl/modules/id_stage.v:127$74'.
+No latch inferred for signal `\id_stage.\jalr_target' from process `\id_stage.$proc$rtl/modules/id_stage.v:116$70'.
+No latch inferred for signal `\id_stage.\jal_target' from process `\id_stage.$proc$rtl/modules/id_stage.v:116$70'.
+No latch inferred for signal `\id_stage.\imm' from process `\id_stage.$proc$rtl/modules/id_stage.v:101$69'.
+No latch inferred for signal `\id_stage.\rs1_data' from process `\id_stage.$proc$rtl/modules/id_stage.v:95$68'.
+No latch inferred for signal `\id_stage.\rs2_data' from process `\id_stage.$proc$rtl/modules/id_stage.v:95$68'.
+No latch inferred for signal `\id_stage.\rd_addr' from process `\id_stage.$proc$rtl/modules/id_stage.v:88$67'.
+No latch inferred for signal `\id_stage.\rf_rs2_addr' from process `\id_stage.$proc$rtl/modules/id_stage.v:88$67'.
+No latch inferred for signal `\id_stage.\rf_rs1_addr' from process `\id_stage.$proc$rtl/modules/id_stage.v:88$67'.
+No latch inferred for signal `\if_stage.\i_addr' from process `\if_stage.$proc$rtl/modules/if_stage.v:53$55'.
+No latch inferred for signal `\if_stage.\pc_plus4' from process `\if_stage.$proc$rtl/modules/if_stage.v:48$53'.
+No latch inferred for signal `\forwarding_unit.\fwd_a_sel' from process `\forwarding_unit.$proc$rtl/modules/forwarding_unit.v:51$35'.
+No latch inferred for signal `\forwarding_unit.\fwd_b_sel' from process `\forwarding_unit.$proc$rtl/modules/forwarding_unit.v:51$35'.
+
+13.7. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\rv32i_core.\id_ex_rs1_addr' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1372' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_rs2_addr' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1373' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_wb_en' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1374' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_alu_result' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1375' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\mem_wb_wb_en' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1376' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\mem_wb_rd_addr' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1377' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_rd_addr' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1378' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_mem_read' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1379' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_rd_addr' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1380' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_rs1_data' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1381' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\if_id_pc_plus4' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1382' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\if_id_instr' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1383' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\if_id_valid' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1384' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_pc' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1385' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\if_id_pc' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1386' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_rs2_data' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1387' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_imm' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1388' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_alu_op' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1389' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_alu_src_a' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1390' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_alu_src_b' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1391' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_mem_write' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1392' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_mem_width' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1393' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_mem_sign_ext' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1394' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_wb_en' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1395' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_wb_src' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1396' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_branch_op' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1397' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_is_branch' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1398' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_is_jal' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1399' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_is_jalr' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1400' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_is_csr' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1401' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_is_ecall' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1402' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_is_ebreak' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1403' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_is_illegal' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1404' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_is_mret' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1405' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_csr_op' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1406' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\id_ex_csr_addr' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1407' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_pc' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1408' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_rs2_data' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1409' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_mem_read' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1410' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_mem_write' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1411' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_mem_width' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1412' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_mem_sign_ext' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1413' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_wb_src' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1414' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_is_csr' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1415' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_csr_op' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1416' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_csr_addr' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1417' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_is_ecall' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1418' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_is_ebreak' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1419' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_is_illegal' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1420' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_is_mret' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1421' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_is_jal' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1422' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\ex_mem_is_jalr' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1423' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\mem_wb_pc' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1424' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\mem_wb_alu_result' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1425' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\mem_wb_mem_rdata' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1426' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\mem_wb_wb_src' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1427' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\mem_wb_is_csr' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1428' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\mem_wb_csr_rdata' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+  created $adff cell `$procdff$1429' with positive edge clock and negative level reset.
+Creating register for signal `\rv32i_core.\rst_sync_ff' using process `\rv32i_core.$proc$rtl/top/rv32i_core.v:30$223'.
+  created $adff cell `$procdff$1430' with positive edge clock and negative level reset.
+Creating register for signal `\csr_block.\mcause' using process `\csr_block.$proc$rtl/modules/csr_block.v:179$212'.
+  created $adff cell `$procdff$1431' with positive edge clock and negative level reset.
+Creating register for signal `\csr_block.\mstatus' using process `\csr_block.$proc$rtl/modules/csr_block.v:179$212'.
+  created $adff cell `$procdff$1432' with positive edge clock and negative level reset.
+Creating register for signal `\csr_block.\misa' using process `\csr_block.$proc$rtl/modules/csr_block.v:179$212'.
+  created $adff cell `$procdff$1433' with positive edge clock and negative level reset.
+Creating register for signal `\csr_block.\mtvec' using process `\csr_block.$proc$rtl/modules/csr_block.v:179$212'.
+  created $adff cell `$procdff$1434' with positive edge clock and negative level reset.
+Creating register for signal `\csr_block.\mepc' using process `\csr_block.$proc$rtl/modules/csr_block.v:179$212'.
+  created $adff cell `$procdff$1435' with positive edge clock and negative level reset.
+Creating register for signal `\csr_block.\mie' using process `\csr_block.$proc$rtl/modules/csr_block.v:179$212'.
+  created $adff cell `$procdff$1436' with positive edge clock and negative level reset.
+Creating register for signal `\csr_block.\mip' using process `\csr_block.$proc$rtl/modules/csr_block.v:179$212'.
+  created $adff cell `$procdff$1437' with positive edge clock and negative level reset.
+Creating register for signal `\if_stage.\pc' using process `\if_stage.$proc$rtl/modules/if_stage.v:38$51'.
+  created $adff cell `$procdff$1438' with positive edge clock and negative level reset.
+Creating register for signal `\register_file.$memwr$\rf$rtl/modules/register_file.v:26$1_ADDR' using process `\register_file.$proc$rtl/modules/register_file.v:24$2'.
+  created $dff cell `$procdff$1439' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\rf$rtl/modules/register_file.v:26$1_DATA' using process `\register_file.$proc$rtl/modules/register_file.v:24$2'.
+  created $dff cell `$procdff$1440' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\rf$rtl/modules/register_file.v:26$1_EN' using process `\register_file.$proc$rtl/modules/register_file.v:24$2'.
+  created $dff cell `$procdff$1441' with positive edge clock.
+
+13.8. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 8 empty switches in `\rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+Removing empty process `rv32i_core.$proc$rtl/top/rv32i_core.v:441$226'.
+Removing empty process `rv32i_core.$proc$rtl/top/rv32i_core.v:30$223'.
+Removing empty process `pipeline_control.$proc$rtl/modules/pipeline_control.v:114$217'.
+Found and cleaned up 6 empty switches in `\pipeline_control.$proc$rtl/modules/pipeline_control.v:37$214'.
+Removing empty process `pipeline_control.$proc$rtl/modules/pipeline_control.v:37$214'.
+Found and cleaned up 3 empty switches in `\csr_block.$proc$rtl/modules/csr_block.v:179$212'.
+Removing empty process `csr_block.$proc$rtl/modules/csr_block.v:179$212'.
+Found and cleaned up 1 empty switch in `\csr_block.$proc$rtl/modules/csr_block.v:158$211'.
+Removing empty process `csr_block.$proc$rtl/modules/csr_block.v:158$211'.
+Found and cleaned up 2 empty switches in `\csr_block.$proc$rtl/modules/csr_block.v:141$209'.
+Removing empty process `csr_block.$proc$rtl/modules/csr_block.v:141$209'.
+Found and cleaned up 1 empty switch in `\csr_block.$proc$rtl/modules/csr_block.v:123$208'.
+Removing empty process `csr_block.$proc$rtl/modules/csr_block.v:123$208'.
+Found and cleaned up 1 empty switch in `\csr_block.$proc$rtl/modules/csr_block.v:112$204'.
+Removing empty process `csr_block.$proc$rtl/modules/csr_block.v:112$204'.
+Found and cleaned up 1 empty switch in `\csr_block.$proc$rtl/modules/csr_block.v:98$203'.
+Removing empty process `csr_block.$proc$rtl/modules/csr_block.v:98$203'.
+Removing empty process `csr_block.$proc$rtl/modules/csr_block.v:93$201'.
+Found and cleaned up 6 empty switches in `\csr_block.$proc$rtl/modules/csr_block.v:76$196'.
+Removing empty process `csr_block.$proc$rtl/modules/csr_block.v:76$196'.
+Removing empty process `wb_stage.$proc$rtl/modules/wb_stage.v:37$182'.
+Removing empty process `mem_stage.$proc$rtl/modules/mem_stage.v:123$172'.
+Found and cleaned up 3 empty switches in `\mem_stage.$proc$rtl/modules/mem_stage.v:101$165'.
+Removing empty process `mem_stage.$proc$rtl/modules/mem_stage.v:101$165'.
+Found and cleaned up 2 empty switches in `\mem_stage.$proc$rtl/modules/mem_stage.v:88$160'.
+Removing empty process `mem_stage.$proc$rtl/modules/mem_stage.v:88$160'.
+Removing empty process `mem_stage.$proc$rtl/modules/mem_stage.v:83$159'.
+Found and cleaned up 3 empty switches in `\mem_stage.$proc$rtl/modules/mem_stage.v:61$158'.
+Removing empty process `mem_stage.$proc$rtl/modules/mem_stage.v:61$158'.
+Found and cleaned up 1 empty switch in `\mem_stage.$proc$rtl/modules/mem_stage.v:51$157'.
+Removing empty process `mem_stage.$proc$rtl/modules/mem_stage.v:51$157'.
+Removing empty process `mem_stage.$proc$rtl/modules/mem_stage.v:46$156'.
+Removing empty process `ex_stage.$proc$rtl/modules/ex_stage.v:142$155'.
+Removing empty process `ex_stage.$proc$rtl/modules/ex_stage.v:135$150'.
+Removing empty process `ex_stage.$proc$rtl/modules/ex_stage.v:130$148'.
+Found and cleaned up 2 empty switches in `\ex_stage.$proc$rtl/modules/ex_stage.v:112$141'.
+Removing empty process `ex_stage.$proc$rtl/modules/ex_stage.v:112$141'.
+Found and cleaned up 1 empty switch in `\ex_stage.$proc$rtl/modules/ex_stage.v:83$127'.
+Removing empty process `ex_stage.$proc$rtl/modules/ex_stage.v:83$127'.
+Removing empty process `id_stage.$proc$rtl/modules/id_stage.v:246$116'.
+Removing empty process `id_stage.$proc$rtl/modules/id_stage.v:239$105'.
+Found and cleaned up 2 empty switches in `\id_stage.$proc$rtl/modules/id_stage.v:220$102'.
+Removing empty process `id_stage.$proc$rtl/modules/id_stage.v:220$102'.
+Removing empty process `id_stage.$proc$rtl/modules/id_stage.v:213$99'.
+Removing empty process `id_stage.$proc$rtl/modules/id_stage.v:207$98'.
+Removing empty process `id_stage.$proc$rtl/modules/id_stage.v:201$97'.
+Found and cleaned up 3 empty switches in `\id_stage.$proc$rtl/modules/id_stage.v:184$88'.
+Removing empty process `id_stage.$proc$rtl/modules/id_stage.v:184$88'.
+Found and cleaned up 1 empty switch in `\id_stage.$proc$rtl/modules/id_stage.v:168$84'.
+Removing empty process `id_stage.$proc$rtl/modules/id_stage.v:168$84'.
+Found and cleaned up 3 empty switches in `\id_stage.$proc$rtl/modules/id_stage.v:148$76'.
+Removing empty process `id_stage.$proc$rtl/modules/id_stage.v:148$76'.
+Found and cleaned up 4 empty switches in `\id_stage.$proc$rtl/modules/id_stage.v:127$74'.
+Removing empty process `id_stage.$proc$rtl/modules/id_stage.v:127$74'.
+Removing empty process `id_stage.$proc$rtl/modules/id_stage.v:116$70'.
+Found and cleaned up 1 empty switch in `\id_stage.$proc$rtl/modules/id_stage.v:101$69'.
+Removing empty process `id_stage.$proc$rtl/modules/id_stage.v:101$69'.
+Removing empty process `id_stage.$proc$rtl/modules/id_stage.v:95$68'.
+Removing empty process `id_stage.$proc$rtl/modules/id_stage.v:88$67'.
+Removing empty process `if_stage.$proc$rtl/modules/if_stage.v:53$55'.
+Removing empty process `if_stage.$proc$rtl/modules/if_stage.v:48$53'.
+Found and cleaned up 1 empty switch in `\if_stage.$proc$rtl/modules/if_stage.v:38$51'.
+Removing empty process `if_stage.$proc$rtl/modules/if_stage.v:38$51'.
+Removing empty process `forwarding_unit.$proc$rtl/modules/forwarding_unit.v:51$35'.
+Found and cleaned up 1 empty switch in `\register_file.$proc$rtl/modules/register_file.v:24$2'.
+Removing empty process `register_file.$proc$rtl/modules/register_file.v:24$2'.
+Cleaned up 57 empty switches.
+
+14. Executing FLATTEN pass (flatten design).
+Using template id_stage for cells of type id_stage.
+Using template wb_stage for cells of type wb_stage.
+Using template register_file for cells of type register_file.
+Using template forwarding_unit for cells of type forwarding_unit.
+Using template hazard_unit for cells of type hazard_unit.
+Using template mem_stage for cells of type mem_stage.
+Using template csr_block for cells of type csr_block.
+Using template pipeline_control for cells of type pipeline_control.
+Using template ex_stage for cells of type ex_stage.
+Using template if_stage for cells of type if_stage.
+<suppressed ~10 debug messages>
+No more expansions possible.
+Deleting now unused module pipeline_control.
+Deleting now unused module csr_block.
+Deleting now unused module wb_stage.
+Deleting now unused module mem_stage.
+Deleting now unused module ex_stage.
+Deleting now unused module id_stage.
+Deleting now unused module if_stage.
+Deleting now unused module hazard_unit.
+Deleting now unused module forwarding_unit.
+Deleting now unused module register_file.
+
+15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rv32i_core.
+<suppressed ~168 debug messages>
+
+16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rv32i_core..
+Removed 40 unused cells and 767 unused wires.
+<suppressed ~45 debug messages>
+
+17. Executing CHECK pass (checking for obvious problems).
+checking module rv32i_core..
+found and reported 0 problems.
+
+18. Executing OPT pass (performing simple optimizations).
+
+18.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rv32i_core.
+
+18.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rv32i_core'.
+<suppressed ~189 debug messages>
+Removed a total of 63 cells.
+
+18.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rv32i_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1067.
+    dead port 1/8 on $pmux $techmap\u_csr.$procmux$1084.
+    dead port 6/8 on $pmux $techmap\u_csr.$procmux$1084.
+    dead port 8/8 on $pmux $techmap\u_csr.$procmux$1084.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1110.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1113.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1116.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1119.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1122.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1128.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1131.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1134.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1137.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1143.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1146.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1149.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1155.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1158.
+    dead port 1/2 on $mux $techmap\u_csr.$procmux$1164.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$523.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$526.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$532.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$535.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$541.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$544.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$550.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$553.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$559.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$562.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$568.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$571.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$576.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$579.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$585.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$588.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$593.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$596.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$602.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$605.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$610.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$613.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$619.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$622.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$627.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$630.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$636.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$639.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$645.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$651.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$654.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$660.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$666.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$669.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$675.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$681.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$684.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$690.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$696.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$699.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$705.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$711.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$714.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$720.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$726.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$729.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$735.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$741.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$744.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$753.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$756.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$765.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$768.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$777.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$780.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$789.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$792.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$801.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$804.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$813.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$816.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$825.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$828.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$834.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$837.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$843.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$846.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$852.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$855.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$861.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$864.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$870.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$873.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$879.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$882.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$888.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$891.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$897.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$903.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$909.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$915.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$921.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$927.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$933.
+    dead port 2/2 on $mux $techmap\u_ex.$procmux$1234.
+    dead port 2/2 on $mux $techmap\u_id.$procmux$1263.
+    dead port 2/2 on $mux $techmap\u_id.$procmux$1271.
+    dead port 1/2 on $mux $techmap\u_id.$procmux$1286.
+    dead port 1/2 on $mux $techmap\u_id.$procmux$1289.
+    dead port 1/2 on $mux $techmap\u_id.$procmux$1295.
+    dead port 1/2 on $mux $techmap\u_id.$procmux$1312.
+    dead port 1/2 on $mux $techmap\u_id.$procmux$1321.
+    dead port 1/2 on $mux $techmap\u_id.$procmux$1324.
+    dead port 1/2 on $mux $techmap\u_id.$procmux$1327.
+    dead port 1/2 on $mux $techmap\u_id.$procmux$1333.
+    dead port 1/2 on $mux $techmap\u_id.$procmux$1336.
+    dead port 1/2 on $mux $techmap\u_id.$procmux$1342.
+    dead port 2/2 on $mux $techmap\u_mem.$procmux$1174.
+    dead port 2/2 on $mux $techmap\u_mem.$procmux$1184.
+    dead port 2/2 on $mux $techmap\u_mem.$procmux$1203.
+    dead port 2/2 on $mux $techmap\u_mem.$procmux$1213.
+Removed 120 multiplexer ports.
+<suppressed ~84 debug messages>
+
+18.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rv32i_core.
+    New ctrl vector for $pmux cell $techmap\u_csr.$procmux$1084: $techmap\u_csr.$procmux$1032_CMP
+    New ctrl vector for $mux cell $techmap\u_ctrl.$procmux$687: { }
+    New ctrl vector for $mux cell $techmap\u_ctrl.$procmux$702: { }
+    New ctrl vector for $mux cell $techmap\u_ctrl.$procmux$717: { }
+    New ctrl vector for $mux cell $techmap\u_ctrl.$procmux$783: { }
+    New ctrl vector for $mux cell $techmap\u_ctrl.$procmux$795: { }
+    New ctrl vector for $mux cell $techmap\u_ctrl.$procmux$912: { }
+    New ctrl vector for $pmux cell $techmap\u_ex.$procmux$1240: { $techmap\u_ex.$procmux$1250_CMP $techmap\u_ex.$procmux$1249_CMP $techmap\u_ex.$procmux$1248_CMP $techmap\u_ex.$procmux$1247_CMP $techmap\u_ex.$procmux$1246_CMP $techmap\u_ex.$procmux$1245_CMP $techmap\u_ex.$procmux$1244_CMP $techmap\u_ex.$procmux$1243_CMP $techmap\u_ex.$procmux$1242_CMP $techmap\u_ex.$procmux$1241_CMP }
+    New ctrl vector for $pmux cell $techmap\u_csr.$procmux$1076: { $techmap\u_csr.$procmux$1082_CMP $auto$opt_reduce.cc:132:opt_mux$1443 $techmap\u_csr.$procmux$1077_CMP }
+    Consolidated identical input bits for $mux cell $techmap\u_rf.$procmux$1366:
+      Old ports: A=0, B=32'11111111111111111111111111111111, Y=$techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5
+      New ports: A=1'0, B=1'1, Y=$techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0]
+      New connections: $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [31:1] = { $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] $techmap\u_rf.$0$memwr$\rf$rtl/modules/register_file.v:26$1_EN[31:0]$5 [0] }
+    New input vector for $reduce_or cell $auto$opt_reduce.cc:126:opt_mux$1442: { $techmap\u_csr.$procmux$1039_CMP $techmap\u_csr.$procmux$1032_CMP $techmap\u_csr.$procmux$1023_CMP $techmap\u_csr.$procmux$1015_CMP }
+  Optimizing cells in module \rv32i_core.
+Performed a total of 11 changes.
+
+18.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rv32i_core'.
+<suppressed ~33 debug messages>
+Removed a total of 11 cells.
+
+18.6. Executing OPT_RMDFF pass (remove dff with constant values).
+Removing $techmap\u_csr.$procdff$1433 ($adff) from module rv32i_core.
+Replaced 1 DFF cells.
+
+18.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rv32i_core..
+Removed 1 unused cells and 226 unused wires.
+<suppressed ~33 debug messages>
+
+18.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rv32i_core.
+<suppressed ~7 debug messages>
+
+18.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+18.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rv32i_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $techmap\u_ctrl.$procmux$945.
+    dead port 2/2 on $mux $techmap\u_ctrl.$procmux$945.
+Removed 2 multiplexer ports.
+<suppressed ~82 debug messages>
+
+18.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rv32i_core.
+Performed a total of 0 changes.
+
+18.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rv32i_core'.
+Removed a total of 0 cells.
+
+18.13. Executing OPT_RMDFF pass (remove dff with constant values).
+
+18.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rv32i_core..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~3 debug messages>
+
+18.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rv32i_core.
+
+18.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+18.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rv32i_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~82 debug messages>
+
+18.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rv32i_core.
+Performed a total of 0 changes.
+
+18.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rv32i_core'.
+Removed a total of 0 cells.
+
+18.20. Executing OPT_RMDFF pass (remove dff with constant values).
+
+18.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rv32i_core..
+
+18.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rv32i_core.
+
+18.23. Finished OPT passes. (There is nothing left to do.)
+
+19. Executing FSM pass (extract and optimize FSM).
+
+19.1. Executing FSM_DETECT pass (finding FSMs in design).
+Not marking rv32i_core.$techmap\u_rf.$memwr$\rf$rtl/modules/register_file.v:26$1_EN as FSM state register:
+    Users of register don't seem to benefit from recoding.
+Not marking rv32i_core.id_ex_mem_width as FSM state register:
+    Users of register don't seem to benefit from recoding.
+Not marking rv32i_core.id_ex_wb_src as FSM state register:
+    Users of register don't seem to benefit from recoding.
+
+19.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+19.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+19.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rv32i_core..
+
+19.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+19.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+19.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+19.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+20. Executing OPT pass (performing simple optimizations).
+
+20.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rv32i_core.
+
+20.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rv32i_core'.
+Removed a total of 0 cells.
+
+20.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rv32i_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~82 debug messages>
+
+20.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rv32i_core.
+Performed a total of 0 changes.
+
+20.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rv32i_core'.
+Removed a total of 0 cells.
+
+20.6. Executing OPT_RMDFF pass (remove dff with constant values).
+
+20.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rv32i_core..
+
+20.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rv32i_core.
+
+20.9. Finished OPT passes. (There is nothing left to do.)
+
+21. Executing WREDUCE pass (reducing word size of cells).
+Removed top 12 bits (of 32) from mux cell rv32i_core.$techmap\u_id.$procmux$1348 ($mux).
+Removed top 11 bits (of 12) from port B of cell rv32i_core.$techmap\u_id.$procmux$1262_CMP0 ($eq).
+Removed top 2 bits (of 3) from port B of cell rv32i_core.$techmap\u_id.$eq$rtl/modules/id_stage.v:180$86 ($eq).
+Removed top 2 bits (of 7) from port B of cell rv32i_core.$techmap\u_id.$eq$rtl/modules/id_stage.v:83$64 ($eq).
+Removed top 1 bits (of 7) from port B of cell rv32i_core.$techmap\u_id.$eq$rtl/modules/id_stage.v:82$63 ($eq).
+Removed top 1 bits (of 7) from port B of cell rv32i_core.$techmap\u_id.$eq$rtl/modules/id_stage.v:78$59 ($eq).
+Removed top 5 bits (of 7) from port B of cell rv32i_core.$techmap\u_id.$eq$rtl/modules/id_stage.v:77$58 ($eq).
+Removed top 2 bits (of 7) from port B of cell rv32i_core.$techmap\u_id.$eq$rtl/modules/id_stage.v:76$57 ($eq).
+Removed top 1 bits (of 7) from port B of cell rv32i_core.$techmap\u_id.$eq$rtl/modules/id_stage.v:75$56 ($eq).
+Removed top 29 bits (of 32) from port B of cell rv32i_core.$techmap\u_wb.$add$rtl/modules/wb_stage.v:30$176 ($add).
+Removed top 1 bits (of 2) from port B of cell rv32i_core.$techmap\u_wb.$eq$rtl/modules/wb_stage.v:29$174 ($eq).
+Removed top 31 bits (of 32) from FF cell rv32i_core.$techmap\u_rf.$procdff$1441 ($dff).
+Removed cell rv32i_core.$techmap\u_rf.$procmux$1370 ($mux).
+Removed cell rv32i_core.$techmap\u_rf.$procmux$1368 ($mux).
+Removed top 1 bits (of 2) from port B of cell rv32i_core.$techmap\u_mem.$procmux$1182_CMP0 ($eq).
+Removed top 1 bits (of 2) from port B of cell rv32i_core.$techmap\u_mem.$procmux$1175_CMP0 ($eq).
+Removed top 1 bits (of 2) from port B of cell rv32i_core.$techmap\u_csr.$procmux$1095_CMP0 ($eq).
+Removed top 6 bits (of 8) from mux cell rv32i_core.$techmap\u_csr.$procmux$1084 ($mux).
+Removed top 2 bits (of 12) from port B of cell rv32i_core.$techmap\u_csr.$procmux$1082_CMP0 ($eq).
+Removed top 2 bits (of 12) from port B of cell rv32i_core.$techmap\u_csr.$procmux$1077_CMP0 ($eq).
+Removed top 2 bits (of 12) from port B of cell rv32i_core.$techmap\u_csr.$procmux$1039_CMP0 ($eq).
+Removed top 2 bits (of 12) from port B of cell rv32i_core.$techmap\u_csr.$procmux$1032_CMP0 ($eq).
+Removed top 2 bits (of 12) from port B of cell rv32i_core.$techmap\u_csr.$procmux$1023_CMP0 ($eq).
+Removed top 2 bits (of 12) from port B of cell rv32i_core.$techmap\u_csr.$procmux$1015_CMP0 ($eq).
+Removed top 2 bits (of 12) from port B of cell rv32i_core.$techmap\u_csr.$procmux$1005_CMP0 ($eq).
+Removed top 3 bits (of 4) from port B of cell rv32i_core.$techmap\u_ex.$procmux$1249_CMP0 ($eq).
+Removed top 29 bits (of 32) from port B of cell rv32i_core.$techmap\u_if.$add$rtl/modules/if_stage.v:49$54 ($add).
+Removed top 2 bits (of 4) from port B of cell rv32i_core.$techmap\u_ex.$procmux$1248_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell rv32i_core.$techmap\u_ex.$procmux$1247_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell rv32i_core.$techmap\u_ex.$procmux$1246_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell rv32i_core.$techmap\u_ex.$procmux$1245_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell rv32i_core.$techmap\u_ex.$procmux$1243_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell rv32i_core.$techmap\u_ex.$procmux$1242_CMP0 ($eq).
+Removed top 2 bits (of 3) from port B of cell rv32i_core.$techmap\u_ex.$procmux$1232_CMP0 ($eq).
+Removed top 1 bits (of 2) from port B of cell rv32i_core.$techmap\u_ex.$eq$rtl/modules/ex_stage.v:136$151 ($eq).
+Removed top 31 bits (of 32) from mux cell rv32i_core.$techmap\u_ex.$ternary$rtl/modules/ex_stage.v:94$134 ($mux).
+Removed top 31 bits (of 32) from mux cell rv32i_core.$techmap\u_ex.$ternary$rtl/modules/ex_stage.v:92$132 ($mux).
+Removed top 1 bits (of 2) from port B of cell rv32i_core.$techmap\u_ex.$eq$rtl/modules/ex_stage.v:69$118 ($eq).
+Removed top 1 bits (of 32) from mux cell rv32i_core.$techmap\u_id.$procmux$1350 ($mux).
+Removed top 1 bits (of 32) from mux cell rv32i_core.$techmap\u_id.$procmux$1352 ($mux).
+Removed top 1 bits (of 32) from mux cell rv32i_core.$techmap\u_id.$procmux$1354 ($mux).
+Removed top 1 bits (of 32) from mux cell rv32i_core.$techmap\u_id.$procmux$1356 ($mux).
+Removed top 1 bits (of 32) from mux cell rv32i_core.$techmap\u_id.$procmux$1358 ($mux).
+Removed top 1 bits (of 32) from mux cell rv32i_core.$techmap\u_id.$procmux$1360 ($mux).
+Removed top 1 bits (of 32) from mux cell rv32i_core.$techmap\u_id.$procmux$1362 ($mux).
+Removed top 31 bits (of 32) from wire rv32i_core.$techmap\u_ex.$ternary$rtl/modules/ex_stage.v:92$132_Y.
+Removed top 31 bits (of 32) from wire rv32i_core.$techmap\u_ex.$ternary$rtl/modules/ex_stage.v:94$134_Y.
+
+22. Executing PEEPOPT pass (run peephole optimizers).
+
+23. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rv32i_core..
+Removed 0 unused cells and 4 unused wires.
+<suppressed ~1 debug messages>
+
+24. Executing SHARE pass (SAT-based resource sharing).
+Found 5 cells in module rv32i_core that may be considered for resource sharing.
+  Analyzing resource sharing options for $techmap\u_rf.$memrd$\rf$rtl/modules/register_file.v:31$12 ($memrd):
+    Found 1 activation_patterns using ctrl signal { $techmap\u_rf.$eq$rtl/modules/register_file.v:31$11_Y $logic_or$rtl/top/rv32i_core.v:528$228_Y \nop_into_ex }.
+    Found 1 candidates: $techmap\u_rf.$memrd$\rf$rtl/modules/register_file.v:30$9
+    Analyzing resource sharing with $techmap\u_rf.$memrd$\rf$rtl/modules/register_file.v:30$9 ($memrd):
+      Found 2 activation_patterns using ctrl signal { \u_if.branch_taken \u_if.trap_taken \u_ctrl.is_jalr $techmap\u_rf.$eq$rtl/modules/register_file.v:30$8_Y $logic_or$rtl/top/rv32i_core.v:528$228_Y \nop_into_ex \pc_write_en }.
+      Activation pattern for cell $techmap\u_rf.$memrd$\rf$rtl/modules/register_file.v:31$12: { $techmap\u_rf.$eq$rtl/modules/register_file.v:31$11_Y $logic_or$rtl/top/rv32i_core.v:528$228_Y \nop_into_ex } = 3'000
+      Activation pattern for cell $techmap\u_rf.$memrd$\rf$rtl/modules/register_file.v:30$9: { \u_if.branch_taken \u_if.trap_taken \u_ctrl.is_jalr $techmap\u_rf.$eq$rtl/modules/register_file.v:30$8_Y \pc_write_en } = 5'00101
+      Activation pattern for cell $techmap\u_rf.$memrd$\rf$rtl/modules/register_file.v:30$9: { $techmap\u_rf.$eq$rtl/modules/register_file.v:30$8_Y $logic_or$rtl/top/rv32i_core.v:528$228_Y \nop_into_ex } = 3'000
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1229_CMP vs. $techmap\u_ex.$procmux$1228_CMP
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1230_CMP vs. $techmap\u_ex.$procmux$1228_CMP
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1230_CMP vs. $techmap\u_ex.$procmux$1229_CMP
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1231_CMP vs. $techmap\u_ex.$procmux$1228_CMP
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1231_CMP vs. $techmap\u_ex.$procmux$1229_CMP
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1231_CMP vs. $techmap\u_ex.$procmux$1230_CMP
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1231_CMP vs. $techmap\u_ex.$procmux$1232_CMP
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1231_CMP vs. $techmap\u_ex.$procmux$1233_CMP
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1232_CMP vs. $techmap\u_ex.$procmux$1228_CMP
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1232_CMP vs. $techmap\u_ex.$procmux$1229_CMP
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1232_CMP vs. $techmap\u_ex.$procmux$1230_CMP
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1233_CMP vs. $techmap\u_ex.$procmux$1228_CMP
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1233_CMP vs. $techmap\u_ex.$procmux$1229_CMP
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1233_CMP vs. $techmap\u_ex.$procmux$1230_CMP
+      Adding exclusive control bits: $techmap\u_ex.$procmux$1233_CMP vs. $techmap\u_ex.$procmux$1232_CMP
+      Adding exclusive control bits: $techmap\u_mem.$procmux$1196_CMP vs. $techmap\u_mem.$procmux$1175_CMP
+      Size of SAT problem: 89 cells, 2528 variables, 6357 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \u_if.branch_taken \u_if.trap_taken \u_ctrl.is_jalr $techmap\u_rf.$eq$rtl/modules/register_file.v:30$8_Y $techmap\u_rf.$eq$rtl/modules/register_file.v:31$11_Y $logic_or$rtl/top/rv32i_core.v:528$228_Y \nop_into_ex \pc_write_en } = 8'00000001
+  Analyzing resource sharing options for $techmap\u_rf.$memrd$\rf$rtl/modules/register_file.v:30$9 ($memrd):
+    Found 2 activation_patterns using ctrl signal { \u_if.branch_taken \u_if.trap_taken \u_ctrl.is_jalr $techmap\u_rf.$eq$rtl/modules/register_file.v:30$8_Y $logic_or$rtl/top/rv32i_core.v:528$228_Y \nop_into_ex \pc_write_en }.
+    No candidates found.
+  Analyzing resource sharing options for $techmap\u_ex.$sshr$rtl/modules/ex_stage.v:100$137 ($sshr):
+    Found 1 activation_patterns using ctrl signal { $techmap\u_ex.$procmux$1244_CMP \flush_ex }.
+    No candidates found.
+  Analyzing resource sharing options for $techmap\u_ex.$shr$rtl/modules/ex_stage.v:98$136 ($shr):
+    Found 1 activation_patterns using ctrl signal { $techmap\u_ex.$procmux$1245_CMP \flush_ex }.
+    No candidates found.
+  Analyzing resource sharing options for $techmap\u_ex.$shl$rtl/modules/ex_stage.v:90$130 ($shl):
+    Found 1 activation_patterns using ctrl signal { $techmap\u_ex.$procmux$1249_CMP \flush_ex }.
+    No candidates found.
+
+25. Executing OPT pass (performing simple optimizations).
+
+25.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rv32i_core.
+
+25.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rv32i_core'.
+Removed a total of 0 cells.
+
+25.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rv32i_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~81 debug messages>
+
+25.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rv32i_core.
+Performed a total of 0 changes.
+
+25.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rv32i_core'.
+Removed a total of 0 cells.
+
+25.6. Executing OPT_RMDFF pass (remove dff with constant values).
+
+25.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rv32i_core..
+
+25.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rv32i_core.
+
+25.9. Finished OPT passes. (There is nothing left to do.)
+
+26. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+  cell sky130_fd_sc_hd__dfxtp_1 (noninv, pins=3, area=20.02) is a direct match for cell type $_DFF_P_.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+  cell sky130_fd_sc_hd__dfrtn_1 (noninv, pins=4, area=25.02) is a direct match for cell type $_DFF_NN0_.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+  cell sky130_fd_sc_hd__dfrtp_1 (noninv, pins=4, area=25.02) is a direct match for cell type $_DFF_PN0_.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+  cell sky130_fd_sc_hd__dfstp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN1_.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+  cell sky130_fd_sc_hd__dfbbn_1 (noninv, pins=6, area=32.53) is a direct match for cell type $_DFFSR_NNN_.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+  cell sky130_fd_sc_hd__dfbbp_1 (noninv, pins=6, area=32.53) is a direct match for cell type $_DFFSR_PNN_.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+  create mapping for $_DFF_NP0_ from mapping for $_DFF_NN0_.
+  create mapping for $_DFF_PP0_ from mapping for $_DFF_PN0_.
+  create mapping for $_DFF_PP1_ from mapping for $_DFF_PN1_.
+  create mapping for $_DFFSR_NPN_ from mapping for $_DFFSR_NNN_.
+  create mapping for $_DFFSR_PPN_ from mapping for $_DFFSR_PNN_.
+  create mapping for $_DFFSR_NNP_ from mapping for $_DFFSR_NNN_.
+  create mapping for $_DFFSR_NPP_ from mapping for $_DFFSR_NNP_.
+  create mapping for $_DFFSR_PNP_ from mapping for $_DFFSR_PNN_.
+  create mapping for $_DFFSR_PPP_ from mapping for $_DFFSR_PNP_.
+  create mapping for $_DFF_NN1_ from mapping for $_DFF_NN0_.
+  create mapping for $_DFF_NP1_ from mapping for $_DFF_NN1_.
+  create mapping for $_DFF_N_ from mapping for $_DFF_P_.
+  final dff cell mappings:
+    sky130_fd_sc_hd__dfxtp_1 _DFF_N_ (.CLK(~C), .D( D), .Q( Q));
+    sky130_fd_sc_hd__dfxtp_1 _DFF_P_ (.CLK( C), .D( D), .Q( Q));
+    sky130_fd_sc_hd__dfrtn_1 _DFF_NN0_ (.CLK_N( C), .D( D), .Q( Q), .RESET_B( R));
+    sky130_fd_sc_hd__dfrtn_1 _DFF_NN1_ (.CLK_N( C), .D(~D), .Q(~Q), .RESET_B( R));
+    sky130_fd_sc_hd__dfrtn_1 _DFF_NP0_ (.CLK_N( C), .D( D), .Q( Q), .RESET_B(~R));
+    sky130_fd_sc_hd__dfrtn_1 _DFF_NP1_ (.CLK_N( C), .D(~D), .Q(~Q), .RESET_B(~R));
+    sky130_fd_sc_hd__dfrtp_1 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    sky130_fd_sc_hd__dfstp_2 _DFF_PN1_ (.CLK( C), .D( D), .Q( Q), .SET_B( R));
+    sky130_fd_sc_hd__dfrtp_1 _DFF_PP0_ (.CLK( C), .D( D), .Q( Q), .RESET_B(~R));
+    sky130_fd_sc_hd__dfstp_2 _DFF_PP1_ (.CLK( C), .D( D), .Q( Q), .SET_B(~R));
+    sky130_fd_sc_hd__dfbbn_1 _DFFSR_NNN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    sky130_fd_sc_hd__dfbbn_1 _DFFSR_NNP_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B(~R), .SET_B( S));
+    sky130_fd_sc_hd__dfbbn_1 _DFFSR_NPN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B(~S));
+    sky130_fd_sc_hd__dfbbn_1 _DFFSR_NPP_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B(~R), .SET_B(~S));
+    sky130_fd_sc_hd__dfbbp_1 _DFFSR_PNN_ (.CLK( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    sky130_fd_sc_hd__dfbbp_1 _DFFSR_PNP_ (.CLK( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B(~R), .SET_B( S));
+    sky130_fd_sc_hd__dfbbp_1 _DFFSR_PPN_ (.CLK( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B(~S));
+    sky130_fd_sc_hd__dfbbp_1 _DFFSR_PPP_ (.CLK( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B(~R), .SET_B(~S));
+Mapping DFF cells in module `\rv32i_core':
+
+27. Executing ABC pass (technology mapping using ABC).
+
+27.1. Extracting gate netlist of module `\rv32i_core' to `<abc-temp-dir>/input.blif'..
+Extracted 0 gates and 0 wires to a netlist network with 0 inputs and 0 outputs.
+Don't call ABC as there is nothing to map.
+Removing temp directory.
+
+28. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rv32i_core..
+
+29. Executing Verilog backend.
+Dumping module `\rv32i_core'.
+
+30. Printing statistics.
+
+=== rv32i_core ===
+
+   Number of wires:                663
+   Number of wire bits:           6987
+   Number of public wires:         384
+   Number of public wire bits:    4190
+   Number of memories:               1
+   Number of memory bits:         1024
+   Number of processes:              0
+   Number of cells:                408
+     $add                            6
+     $adff                          57
+     $and                            7
+     $dff                            3
+     $eq                            56
+     $ge                             2
+     $logic_and                     21
+     $logic_not                      9
+     $logic_or                      29
+     $lt                             2
+     $memrd                          2
+     $memwr                          1
+     $mux                          175
+     $ne                             1
+     $not                            9
+     $or                             2
+     $pmux                          14
+     $reduce_bool                    6
+     $reduce_or                      1
+     $shl                            1
+     $shr                            1
+     $sshr                           1
+     $sub                            1
+     $xor                            1
+
+Warnings: 26 unique messages, 234 total
+End of script. Logfile hash: 2412656c56
+CPU: user 0.99s system 0.02s, MEM: 47.83 MB total, 41.61 MB resident
+Yosys 0.9 (git sha1 1979e0b)
+Time spent: 27% 9x opt_clean (0 sec), 15% 1x dfflibmap (0 sec), ...

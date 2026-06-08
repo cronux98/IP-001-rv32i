@@ -97,7 +97,7 @@ module rv32i_core (
     // ── IF Stage → pipeline ──
     wire [31:0] if_pc, if_pc_plus4;
 
-    // ── ID Stage outputs ──
+    // ── Register File to ID stage data paths (driven ONLY by register_file) ──
     wire [ 4:0] id_rf_rs1_addr, id_rf_rs2_addr, id_rd_addr;
     wire [31:0] id_rs1_data, id_rs2_data, id_imm;
     wire [ 3:0] id_alu_op;
@@ -218,8 +218,6 @@ module rv32i_core (
         .rf_rs1_addr (id_rf_rs1_addr),
         .rf_rs2_addr (id_rf_rs2_addr),
         .rd_addr     (id_rd_addr),
-        .rs1_data    (id_rs1_data),
-        .rs2_data    (id_rs2_data),
         .imm         (id_imm),
         .alu_op      (id_alu_op),
         .alu_src_a   (id_alu_src_a),
@@ -376,16 +374,12 @@ module rv32i_core (
         .if_id_rs1_addr  (if_id_instr[19:15]),
         .if_id_rs2_addr  (if_id_instr[24:20]),
         .stall_if        (stall_from_hazard),
-        .stall_id        (stall_from_hazard)  // same as stall_if — both driven by hazard unit
+        .stall_id        ()  // same signal as stall_if — tied open at top level
     );
 
     // ── Pipeline Control ──
-    // Combine stall_from_hazard with flush_pipeline_from_csr
-    wire combined_stall;
-    assign combined_stall = stall_from_hazard;
-
     pipeline_control u_ctrl (
-        .stall_from_hazard (combined_stall),
+        .stall_from_hazard (stall_from_hazard),
         .branch_taken      (ex_branch_taken),
         .is_jal            (id_is_jal),
         .is_jalr           (id_is_jalr),
