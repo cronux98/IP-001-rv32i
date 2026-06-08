@@ -1,0 +1,43 @@
+# IP-001 RV32I — Yosys Synthesis Script (sky130hd)
+# Pure Verilog → sky130_fd_sc_hd standard cell netlist
+
+# Read all RTL (pure Verilog)
+read_verilog rtl/modules/register_file.v
+read_verilog rtl/modules/forwarding_unit.v
+read_verilog rtl/modules/hazard_unit.v
+read_verilog rtl/modules/if_stage.v
+read_verilog rtl/modules/id_stage.v
+read_verilog rtl/modules/ex_stage.v
+read_verilog rtl/modules/mem_stage.v
+read_verilog rtl/modules/wb_stage.v
+read_verilog rtl/modules/csr_block.v
+read_verilog rtl/modules/pipeline_control.v
+read_verilog rtl/top/rv32i_core.v
+
+# Generic synthesis with flattening
+hierarchy -check -top rv32i_core
+synth -top rv32i_core -flatten
+
+# Map flops to sky130 (needs liberty read as lib)
+read_liberty -lib /home/smdadmin/OpenROAD-flow-scripts/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+dfflibmap -liberty /home/smdadmin/OpenROAD-flow-scripts/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# Map combinational logic via ABC (20ns = 50 MHz)
+abc -liberty /home/smdadmin/OpenROAD-flow-scripts/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib -D 20000
+
+# Cleanup
+setundef -zero
+splitnets
+opt_clean -purge
+
+# Tie hi/lo
+hilomap -singleton -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
+
+# Insbuf for pass-through wires
+insbuf -buf sky130_fd_sc_hd__buf_1 A X
+
+# Write netlist for STA
+write_verilog -noattr -noexpr flow/synth_netlist.v
+
+# Reports
+tee -o flow/synth_stat.rpt stat -liberty /home/smdadmin/OpenROAD-flow-scripts/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
