@@ -30,3 +30,7 @@ verification/tests/__pycache__/
 *.vcd
 *.fst
 obj_dir/
+verification/tmp/
+verification/sim_build/
+verification/results.xml
+__pycache__/
