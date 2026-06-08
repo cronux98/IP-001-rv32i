@@ -43,12 +43,12 @@ module mem_stage (
 );
 
     // ── D-memory address ──
-    always_comb begin
+    always @(*) begin
         d_addr = alu_result;
     end
 
     // ── D-memory write data alignment ──
-    always_comb begin
+    always @(*) begin
         case (mem_width)
             2'b00: d_wdata = {4{rs2_data[7:0]}};    // SB: replicate byte to all lanes
             2'b01: d_wdata = {2{rs2_data[15:0]}};   // SH: replicate halfword
@@ -58,7 +58,7 @@ module mem_stage (
     end
 
     // ── D-memory byte enable ──
-    always_comb begin
+    always @(*) begin
         case (mem_width)
             2'b00: begin  // Byte
                 case (alu_result[1:0])
@@ -80,12 +80,12 @@ module mem_stage (
     end
 
     // ── D-memory write enable ──
-    always_comb begin
+    always @(*) begin
         d_we = mem_write;
     end
 
     // ── Misaligned access detection ──
-    always_comb begin
+    always @(*) begin
         case (mem_width)
             2'b00: misaligned_trap = 1'b0;  // Byte: always aligned
             2'b01: misaligned_trap = alu_result[0];  // Halfword: must be halfword-aligned
@@ -98,7 +98,7 @@ module mem_stage (
     end
 
     // ── Load data alignment and sign/zero extension ──
-    always_comb begin
+    always @(*) begin
         case (mem_width)
             2'b00: begin  // LB / LBU
                 case (alu_result[1:0])
@@ -120,7 +120,7 @@ module mem_stage (
     end
 
     // ── Passthrough signals to MEM/WB ──
-    always_comb begin
+    always @(*) begin
         alu_result_out = alu_result;
         rd_addr_out    = rd_addr;
         wb_en_out      = wb_en_in;

@@ -80,7 +80,7 @@ module ex_stage (
                        operand_b_raw;
 
     // ── ALU ──
-    always_comb begin
+    always @(*) begin
         case (alu_op)
             // ADD
             4'b0000: alu_result = operand_a + operand_b;
@@ -109,7 +109,7 @@ module ex_stage (
     end
 
     // ── Branch evaluation ──
-    always_comb begin
+    always @(*) begin
         if (is_branch) begin
             case (branch_op)
                 3'b000: branch_taken = (operand_a == operand_b);           // BEQ
@@ -127,19 +127,19 @@ module ex_stage (
     end
 
     // ── Branch target (pc + imm) ──
-    always_comb begin
+    always @(*) begin
         branch_target = pc + imm;
     end
 
     // ── Store data forwarding (rs2 gets forwarded for SW/SH/SB) ──
-    always_comb begin
+    always @(*) begin
         rs2_data_out = (fwd_b_sel == 2'b01) ? exmem_fwd_data :
                        (fwd_b_sel == 2'b10) ? memwb_fwd_data :
                        rs2_data_in;
     end
 
     // ── Passthrough signals to EX/MEM ──
-    always_comb begin
+    always @(*) begin
         rd_addr_out     = rd_addr;
         mem_read_out    = mem_read;
         mem_write_out   = mem_write;

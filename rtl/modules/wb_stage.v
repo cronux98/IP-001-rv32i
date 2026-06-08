@@ -34,7 +34,7 @@ module wb_stage (
     // ── Register file write interface ──
     // x0 write suppression: wb_en already suppressed for x0 in CSR block;
     // double-check here for defense-in-depth
-    always_comb begin
+    always @(*) begin
         rf_rd_addr = rd_addr;
         rf_rd_data = wb_data;
         rf_we      = wb_en_in && (rd_addr != 5'd0);

@@ -21,7 +21,7 @@ module register_file (
 
     // ── Write port (clocked, x0 suppressed) ──
     // Defense-in-depth: both WB stage AND register file suppress writes to x0
-    always_ff @(posedge clk) begin
+    always @(posedge clk) begin
         if (we && (rd_addr != 5'd0))
             rf[rd_addr] <= rd_data;
     end

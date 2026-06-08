@@ -34,7 +34,7 @@ module pipeline_control (
 
     // ── Flush/Stall priority logic (combinational) ──
     // Priority: Reset > Trap > MRET > Branch > JAL/JALR > Stall > Normal
-    always_comb begin
+    always @(*) begin
         if (~rst_sync_n) begin
             // RESET: flush ALL stages
             flush_if      = 1'b1;
@@ -111,7 +111,7 @@ module pipeline_control (
 
     // ── Pipeline register write enables ──
     // PC and IF/ID register freeze on stall; ID/EX freezes on stall
-    always_comb begin
+    always @(*) begin
         pc_write_en   = ~stall_if && ~flush_if;
         if_id_reg_en  = ~stall_if;
         id_ex_reg_en  = ~stall_id;

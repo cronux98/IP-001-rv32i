@@ -48,7 +48,7 @@ module forwarding_unit (
     // 00 = no forwarding (use ID/EX register data)
     // 01 = forward from EX/MEM (most recent)
     // 10 = forward from MEM/WB (previous)
-    always_comb begin
+    always @(*) begin
         fwd_a_sel = ex_fwd_a ? 2'b01 : (mem_fwd_a ? 2'b10 : 2'b00);
         fwd_b_sel = ex_fwd_b ? 2'b01 : (mem_fwd_b ? 2'b10 : 2'b00);
     end

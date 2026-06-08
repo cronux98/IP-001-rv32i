@@ -85,20 +85,20 @@ module id_stage (
     assign is_system      = (opcode == 7'b1110011);
 
     // ── Register file addresses ──
-    always_comb begin
+    always @(*) begin
         rf_rs1_addr = rs1;
         rf_rs2_addr = rs2;
         rd_addr     = rd;
     end
 
     // ── Source operand passthrough ──
-    always_comb begin
+    always @(*) begin
         rs1_data = rf_rs1_data;
         rs2_data = rf_rs2_data;
     end
 
     // ── Immediate selection ──
-    always_comb begin
+    always @(*) begin
         case (1'b1)
             is_alu_imm:  imm = imm_i;
             is_load:     imm = imm_i;
@@ -113,7 +113,7 @@ module id_stage (
     end
 
     // ── JAL/JALR target calculation (combinational) ──
-    always_comb begin
+    always @(*) begin
         jal_target  = pc + imm;
         jalr_target = (rf_rs1_data + imm) & ~32'h1;  // Clear LSB
     end
@@ -124,7 +124,7 @@ module id_stage (
     // XOR=0100, SRL=0101 (funct7_bit5=0), SRA=1101 (funct7_bit5=1)
     // OR=0110, AND=0111
     // Special: LUI=1111 (pass imm), AUIPC=1110 (ADD pc+imm), BRANCH=0100 (for comparison)
-    always_comb begin
+    always @(*) begin
         if (is_lui) begin
             alu_op = 4'b1111;  // Pass-through imm (handled in EX)
         end
@@ -145,7 +145,7 @@ module id_stage (
     end
 
     // ── ALU source select ──
-    always_comb begin
+    always @(*) begin
         if (is_auipc) begin
             alu_src_a = 1'b1;  // PC
         end
@@ -165,7 +165,7 @@ module id_stage (
     end
 
     // ── Memory control ──
-    always_comb begin
+    always @(*) begin
         mem_read  = is_load;
         mem_write = is_store;
 
@@ -181,7 +181,7 @@ module id_stage (
     end
 
     // ── Writeback control ──
-    always_comb begin
+    always @(*) begin
         // Determine WB enable
         wb_en = is_alu_reg || is_alu_imm || is_load || is_lui || is_auipc
              || is_jal_instr || is_jalr_instr || is_csr_instr;
@@ -198,26 +198,26 @@ module id_stage (
     end
 
     // ── Branch control ──
-    always_comb begin
+    always @(*) begin
         is_branch = is_branch_instr;
         branch_op = funct3_in;  // funct3 encodes branch condition
     end
 
     // ── Jump signals ──
-    always_comb begin
+    always @(*) begin
         is_jal  = is_jal_instr;
         is_jalr = is_jalr_instr;
     end
 
     // ── CSR control ──
-    always_comb begin
+    always @(*) begin
         is_csr = is_csr_instr && (funct3_in != 3'b000);  // funct3=000 is ECALL/EBREAK/MRET
         csr_op = funct3_in[1:0];
         csr_addr = instr[31:20];
     end
 
     // ── System instruction decode ──
-    always_comb begin
+    always @(*) begin
         if (is_system && funct3_in == 3'b000) begin
             case (instr[31:20])
                 12'h000: begin is_ecall=1; is_ebreak=0; is_mret=0; end  // ECALL
@@ -236,14 +236,14 @@ module id_stage (
     // ── Illegal instruction detection ──
     // Catches: undefined opcodes, RV32I instructions not in our subset
     // Simplified: any opcode not explicitly decoded is illegal
-    always_comb begin
+    always @(*) begin
         is_illegal = ~(is_alu_reg || is_alu_imm || is_load || is_store
                     || is_branch_instr || is_jal_instr || is_jalr_instr
                     || is_lui || is_auipc || is_system);
     end
 
     // ── funct3 passthrough ──
-    always_comb begin
+    always @(*) begin
         funct3 = funct3_in;
     end
 

@@ -73,7 +73,7 @@ module csr_block (
                             || (irq_external && mie[11] && mstatus[3]); // MEIE + MIE
 
     // ── Trap cause priority (Exceptions > Interrupts) ──
-    always_comb begin
+    always @(*) begin
         if (is_ecall)
             trap_cause_val = CAUSE_ECALL_MMODE;
         else if (is_ebreak)
@@ -90,12 +90,12 @@ module csr_block (
             trap_cause_val = 32'd0;
     end
 
-    always_comb begin
+    always @(*) begin
         trap_entry = exception_pending || interrupt_pending;
     end
 
     // ── CSR address decode → current value ──
-    always_comb begin
+    always @(*) begin
         case (csr_addr)
             12'h300: csr_current = mstatus;
             12'h301: csr_current = misa;
@@ -109,7 +109,7 @@ module csr_block (
     end
 
     // ── CSR write data computation ──
-    always_comb begin
+    always @(*) begin
         case (csr_op)
             2'b00: csr_wdata = rs1_data;              // CSRRW
             2'b01: csr_wdata = csr_current | rs1_data; // CSRRS
@@ -120,7 +120,7 @@ module csr_block (
     end
 
     // ── CSR next value computation (with RO field protection) ──
-    always_comb begin
+    always @(*) begin
         case (csr_addr)
             12'h300: begin  // mstatus: only MIE[3], MPIE[7] writable
                 csr_next = csr_wdata;
@@ -138,7 +138,7 @@ module csr_block (
     end
 
     // ── CSR output: read data to WB stage ──
-    always_comb begin
+    always @(*) begin
         if (is_csr_instr) begin
             csr_rdata   = csr_current;
             wb_en_out   = (rd_addr != 5'd0);  // Suppress x0 write
@@ -155,7 +155,7 @@ module csr_block (
     end
 
     // ── Trap/MRET control outputs ──
-    always_comb begin
+    always @(*) begin
         if (trap_entry) begin
             trap_taken   = 1'b1;
             trap_target  = {mtvec[31:2], 2'b00};  // Direct mode only
@@ -176,7 +176,7 @@ module csr_block (
     end
 
     // ── CSR register update (clocked) ──
-    always_ff @(posedge clk or negedge rst_sync_n) begin
+    always @(posedge clk or negedge rst_sync_n) begin
         if (~rst_sync_n) begin
             mstatus <= MSTATUS_RESET;
             misa    <= MISA_RESET;

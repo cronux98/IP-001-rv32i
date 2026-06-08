@@ -27,7 +27,7 @@ module rv32i_core (
     reg [1:0] rst_sync_ff;
     wire rst_sync_n;
 
-    always_ff @(posedge clk or negedge rst_n) begin
+    always @(posedge clk or negedge rst_n) begin
         if (~rst_n) begin
             rst_sync_ff <= 2'b00;
         end
@@ -438,7 +438,7 @@ module rv32i_core (
     // ── NOP definition (all control signals zeroed) ──
     // When nop_into_ex=1 or flush_id=1, ID/EX captures all-zero control signals
 
-    always_ff @(posedge clk or negedge rst_sync_n) begin
+    always @(posedge clk or negedge rst_sync_n) begin
         if (~rst_sync_n) begin
             // ── IF/ID reset ──
             if_id_pc       <= 32'd0;

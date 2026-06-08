@@ -35,7 +35,7 @@ module if_stage (
                      pc_plus4;
 
     // ── PC register ──
-    always_ff @(posedge clk or negedge rst_sync_n) begin
+    always @(posedge clk or negedge rst_sync_n) begin
         if (~rst_sync_n) begin
             pc <= 32'h0000_0000;  // Reset vector = 0x00000000
         end
@@ -45,12 +45,12 @@ module if_stage (
     end
 
     // ── PC+4 (combinational) ──
-    always_comb begin
+    always @(*) begin
         pc_plus4 = pc + 32'd4;
     end
 
     // ── Instruction memory address (word-aligned) ──
-    always_comb begin
+    always @(*) begin
         i_addr = pc;
     end
 
